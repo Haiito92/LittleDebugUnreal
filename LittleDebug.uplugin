@@ -1,0 +1,23 @@
+﻿{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "LittleDebug",
+	"Description": "A plugin for debug utilities",
+	"Category": "Other",
+	"CreatedBy": "Antoine Hanna (Haiito92)",
+	"CreatedByURL": "https://github.com/Haiito92",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "LittleDebug",
+			"Type": "DeveloperTool",
+			"LoadingPhase": "Default"
+		}
+	]
+}
