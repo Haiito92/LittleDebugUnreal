@@ -16,6 +16,6 @@ class LITTLEDEBUG_API UDebugCheatManagerExtension : public UCheatManagerExtensio
 	GENERATED_BODY()
 	
 public:
-	UFUNCTION(Exec, BlueprintCallable)
+	UFUNCTION(Exec, BlueprintCallable, Category="Little Debug")
 	void ToggleSystemDebug(const FGameplayTag& SystemTag, bool Enabled);
 };

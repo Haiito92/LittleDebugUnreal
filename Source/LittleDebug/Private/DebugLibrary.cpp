@@ -2,7 +2,11 @@
 
 
 #include "DebugLibrary.h"
-
+#include "Engine/Engine.h"
+#include "Logging/StructuredLog.h"
+#include "Misc/Paths.h"
+#include "HAL/FileManager.h"        
+#include "Misc/FileHelper.h"   
 #include "DebugSaveData.h"
 #include "GameplayTagContainer.h"
 #include "JsonObjectConverter.h"
