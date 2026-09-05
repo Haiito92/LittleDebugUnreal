@@ -1,7 +1,7 @@
 ﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "DebugLibrary.h"
+#include "LittleDebugLibrary.h"
 #include "Engine/Engine.h"
 #include "Logging/StructuredLog.h"
 #include "Misc/Paths.h"
@@ -13,7 +13,7 @@
 #include "MessageType.h"
 #include "Kismet/KismetSystemLibrary.h"
 
-void UDebugLibrary::AddOnScreenDebugMessage(const FGameplayTag& SystemTag, const EDebugMessageType& MessageType, 
+void ULittleDebugLibrary::AddOnScreenDebugMessage(const FGameplayTag& SystemTag, const EDebugMessageType& MessageType, 
 	const FString& Message, const FLinearColor& Color, float TimeToDisplay)
 {
 	if (!IsSystemDebugToggled(SystemTag)) return;
@@ -21,7 +21,7 @@ void UDebugLibrary::AddOnScreenDebugMessage(const FGameplayTag& SystemTag, const
 	InternalAddOnScreenDebugMessage(FormatMessage(SystemTag.ToString(), MessageType, Message), Color, TimeToDisplay);
 }
 
-void UDebugLibrary::Log(const FGameplayTag& SystemTag, const EDebugMessageType& MessageType, const FString& Message)
+void ULittleDebugLibrary::Log(const FGameplayTag& SystemTag, const EDebugMessageType& MessageType, const FString& Message)
 {
 	if (!IsSystemDebugToggled(SystemTag)) return;
 	
@@ -30,7 +30,7 @@ void UDebugLibrary::Log(const FGameplayTag& SystemTag, const EDebugMessageType& 
 	InternalLog(FinalMessage, MessageType);
 }
 
-void UDebugLibrary::LogAndAddOnScreenDebugMessage(const FGameplayTag& SystemTag, const EDebugMessageType& MessageType,
+void ULittleDebugLibrary::LogAndAddOnScreenDebugMessage(const FGameplayTag& SystemTag, const EDebugMessageType& MessageType,
 	const FString& Message, const FLinearColor& Color, float TimeToDisplay)
 {
 	if (!IsSystemDebugToggled(SystemTag)) return;
@@ -42,7 +42,7 @@ void UDebugLibrary::LogAndAddOnScreenDebugMessage(const FGameplayTag& SystemTag,
 	InternalLog(FinalMessage, MessageType);
 }
 
-void UDebugLibrary::DrawBox(const UObject* WorldContextObject, const FGameplayTag& SystemTag, const FVector& Center,
+void ULittleDebugLibrary::DrawBox(const UObject* WorldContextObject, const FGameplayTag& SystemTag, const FVector& Center,
 	const FVector& Extent, const FRotator& Rotation, const FLinearColor& LineColor, float Duration, float Thickness,
 	const EDrawDebugSceneDepthPriorityGroup& DepthPriority)
 {
@@ -51,7 +51,7 @@ void UDebugLibrary::DrawBox(const UObject* WorldContextObject, const FGameplayTa
 	UKismetSystemLibrary::DrawDebugBox(WorldContextObject, Center, Extent, LineColor, Rotation, Duration, Thickness, DepthPriority);
 }
 
-void UDebugLibrary::DrawCapsule(const UObject* WorldContextObject, const FGameplayTag& SystemTag, const FVector& Center,
+void ULittleDebugLibrary::DrawCapsule(const UObject* WorldContextObject, const FGameplayTag& SystemTag, const FVector& Center,
 	float HalfHeight, float Radius, const FRotator& Rotation, const FLinearColor& LineColor, float Duration, float Thickness,
 	const EDrawDebugSceneDepthPriorityGroup& DepthPriority)
 {
@@ -60,7 +60,7 @@ void UDebugLibrary::DrawCapsule(const UObject* WorldContextObject, const FGamepl
 	UKismetSystemLibrary::DrawDebugCapsule(WorldContextObject, Center, HalfHeight, Radius, Rotation, LineColor, Duration, Thickness, DepthPriority);
 }
 
-void UDebugLibrary::DrawLine(const UObject* WorldContextObject, const FGameplayTag& SystemTag, const FVector& LineStart,
+void ULittleDebugLibrary::DrawLine(const UObject* WorldContextObject, const FGameplayTag& SystemTag, const FVector& LineStart,
 	const FVector& LineEnd, const FLinearColor& LineColor, float Duration, float Thickness,
 	const EDrawDebugSceneDepthPriorityGroup& DepthPriority)
 {
@@ -69,7 +69,7 @@ void UDebugLibrary::DrawLine(const UObject* WorldContextObject, const FGameplayT
 	UKismetSystemLibrary::DrawDebugLine(WorldContextObject, LineStart, LineEnd, LineColor, Duration, Thickness, DepthPriority);
 }
 
-void UDebugLibrary::DrawSphere(const UObject* WorldContextObject, const FGameplayTag& SystemTag, const FVector& Center,
+void ULittleDebugLibrary::DrawSphere(const UObject* WorldContextObject, const FGameplayTag& SystemTag, const FVector& Center,
 	float Radius, int32 Segments, const FLinearColor& LineColor, float Duration, float Thickness,
 	const EDrawDebugSceneDepthPriorityGroup& DepthPriority)
 {
@@ -78,7 +78,7 @@ void UDebugLibrary::DrawSphere(const UObject* WorldContextObject, const FGamepla
 	UKismetSystemLibrary::DrawDebugSphere(WorldContextObject, Center, Radius, Segments, LineColor, Duration, Thickness, DepthPriority);
 }
 
-void UDebugLibrary::ToggleSystemDebug(const FGameplayTag& SystemTag, bool Enabled)
+void ULittleDebugLibrary::ToggleSystemDebug(const FGameplayTag& SystemTag, bool Enabled)
 {
 	if (bool* FoundEnabled = Toggles.Find(SystemTag))
 	{
@@ -92,7 +92,7 @@ void UDebugLibrary::ToggleSystemDebug(const FGameplayTag& SystemTag, bool Enable
 	SaveTogglesToDisk();
 }
 
-void UDebugLibrary::InternalAddOnScreenDebugMessage(const FString& Message, const FLinearColor& Color,
+void ULittleDebugLibrary::InternalAddOnScreenDebugMessage(const FString& Message, const FLinearColor& Color,
 	float TimeToDisplay)
 {
 	
@@ -106,7 +106,7 @@ void UDebugLibrary::InternalAddOnScreenDebugMessage(const FString& Message, cons
 		);
 }
 
-void UDebugLibrary::InternalLog(const FString& Message, const EDebugMessageType& MessageType)
+void ULittleDebugLibrary::InternalLog(const FString& Message, const EDebugMessageType& MessageType)
 {
 	switch (MessageType)
 	{
@@ -128,14 +128,14 @@ void UDebugLibrary::InternalLog(const FString& Message, const EDebugMessageType&
 	}
 }
 
-bool UDebugLibrary::IsSystemDebugToggled(const FGameplayTag& SystemTag)
+bool ULittleDebugLibrary::IsSystemDebugToggled(const FGameplayTag& SystemTag)
 {
 	const bool* FoundEnabled = Toggles.Find(SystemTag);
 	
 	return FoundEnabled ? *FoundEnabled : false;
 }
 
-FString UDebugLibrary::FormatMessage(const FString& Tag, const EDebugMessageType& MessageType, const FString& Message)
+FString ULittleDebugLibrary::FormatMessage(const FString& Tag, const EDebugMessageType& MessageType, const FString& Message)
 {
 	TArray<FStringFormatArg> Args;
 	Args.Add(FStringFormatArg(Tag));
@@ -164,7 +164,7 @@ FString UDebugLibrary::FormatMessage(const FString& Tag, const EDebugMessageType
 	return FString::Format(TEXT("[{0}][{1}]: {2}"), Args);
 }
 
-void UDebugLibrary::SaveTogglesToDisk()
+void ULittleDebugLibrary::SaveTogglesToDisk()
 {
 	FDebugSaveData Data;
 	for (const TTuple<FGameplayTag, bool>& Pair : Toggles)
@@ -180,7 +180,7 @@ void UDebugLibrary::SaveTogglesToDisk()
 	FFileHelper::SaveStringToFile(OutputString, *SavePath);
 }
 
-void UDebugLibrary::LoadTogglesFromDisk()
+void ULittleDebugLibrary::LoadTogglesFromDisk()
 {
 	const FString SavePath = FPaths::ProjectSavedDir() / TEXT("LittleDebug/DebugToggles.json");
 
@@ -207,4 +207,4 @@ void UDebugLibrary::LoadTogglesFromDisk()
 	}
 }
 
-TMap<FGameplayTag, bool> UDebugLibrary::Toggles = {};
+TMap<FGameplayTag, bool> ULittleDebugLibrary::Toggles = {};

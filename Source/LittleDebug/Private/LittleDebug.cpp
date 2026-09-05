@@ -3,7 +3,7 @@
 #include "LittleDebug.h"
 
 #include "DebugCheatManagerExtension.h"
-#include "DebugLibrary.h"
+#include "LittleDebugLibrary.h"
 #include "GameFramework/CheatManager.h"
 
 #define LOCTEXT_NAMESPACE "FLittleDebugModule"
@@ -17,7 +17,7 @@ void FLittleDebugModule::StartupModule()
 			CheatManager->AddCheatManagerExtension(NewObject<UDebugCheatManagerExtension>(CheatManager));
 		}));
 	
-	UDebugLibrary::LoadTogglesFromDisk();
+	ULittleDebugLibrary::LoadTogglesFromDisk();
 }
 
 void FLittleDebugModule::ShutdownModule()

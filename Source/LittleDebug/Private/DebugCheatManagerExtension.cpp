@@ -3,9 +3,9 @@
 
 #include "DebugCheatManagerExtension.h"
 
-#include "DebugLibrary.h"
+#include "LittleDebugLibrary.h"
 
 void UDebugCheatManagerExtension::ToggleSystemDebug(const FGameplayTag& SystemTag, bool Enabled)
 {
-	UDebugLibrary::ToggleSystemDebug(SystemTag, Enabled);
+	ULittleDebugLibrary::ToggleSystemDebug(SystemTag, Enabled);
 }

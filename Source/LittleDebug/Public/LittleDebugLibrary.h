@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "Kismet/KismetSystemLibrary.h"
-#include "DebugLibrary.generated.h"
+#include "LittleDebugLibrary.generated.h"
 
 /**
  * 
@@ -15,7 +15,7 @@ enum class EDebugMessageType : uint8;
 struct FGameplayTag;
 
 UCLASS()
-class LITTLEDEBUG_API UDebugLibrary : public UBlueprintFunctionLibrary
+class LITTLEDEBUG_API ULittleDebugLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 	
